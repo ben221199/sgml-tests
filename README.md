@@ -1,13 +1,24 @@
 # SGML Tests
 
 <table>
-<tr><th>SGML</th><th>Objects</th></tr>
+<tr><th>SGML</th><th>Logs</th><th>Objects</th></tr>
 <!--###################################################################-->
 <tr><td>
 
 ```html
 <!NAME>
 ```
+</td><td>
+
+```log
+CON
+CON -> MD @MDO		<!
+       MD #DCL		N
+       MD		AME
+CON <- MD @MDC		>
+CON
+```
+
 </td><td>
 
 ```java
@@ -25,6 +36,17 @@ MarkupDeclaration{
 ```html
 <!DOCTYPE html>
 ```
+</td><td>
+
+```log
+CON
+CON -> MD @MDO		<!
+       MD #DCL		D
+       MD		OCTYPE html
+CON <- MD @MDC		>
+CON
+```
+
 </td><td>
 
 ```java
@@ -46,6 +68,18 @@ MarkupDeclaration{
 ```
 </td><td>
 
+```log
+CON
+CON -> MD @MDO		<!
+       MD @COM #DCL	--
+       MD		COMMENT_TEXT
+       MD @COM		--
+CON <- MD @MDC		>
+CON
+```
+
+</td><td>
+
 ```java
 MarkupDeclaration{
 	items=[
@@ -63,6 +97,17 @@ MarkupDeclaration{
 ```
 </td><td>
 
+```log
+CON
+CON -> MD @MDO			<!
+       MD -> DSM? @DSO #DCL	[
+       MD <- DSM? @DSC		]
+CON <- MD @MDC			>
+CON
+```
+
+</td><td>
+
 ```java
 MarkupDeclaration{
 	items=[
@@ -78,6 +123,20 @@ MarkupDeclaration{
 ```html
 <![CDATA[SomeTextOrSomething]]>
 ```
+</td><td>
+
+```log
+CON
+CON -> MD @MDO			<!
+       MD -> DSM? @DSO #DCL	[
+             DSM?		CDATA
+             DSM? -> CON @???	[
+                     CON	SomeTextOrSomething
+       MD <- DSM? <- CON @MSC	]]
+CON <- MD @MDC			>
+CON
+```
+<i>Note: The specification is not clear about marked sections.</i>
 </td><td>
 
 ```java
@@ -100,6 +159,15 @@ MarkupDeclaration{
 ```html
 <!>
 ```
+</td><td>
+
+```log
+CON
+CON -> MD @MDO		<!
+CON <- MD @MDC #DCL	>
+CON
+```
+
 </td><td>
 
 ```java
