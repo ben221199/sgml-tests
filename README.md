@@ -23,6 +23,25 @@ MarkupDeclaration{
 <tr><td>
 
 ```html
+<!DOCTYPE html>
+```
+</td><td>
+
+```java
+MarkupDeclaration{
+	items=[
+		"DOCTYPE",
+		new Seperator(" "),
+		"html"
+	]
+}
+```
+
+</td></tr>
+<!--###################################################################-->
+<tr><td>
+
+```html
 <!--COMMENT_TEXT-->
 ```
 </td><td>
@@ -48,6 +67,28 @@ MarkupDeclaration{
 MarkupDeclaration{
 	items=[
 		DeclarationSubset{items=[]}
+	]
+}
+```
+
+</td></tr>
+<!--###################################################################-->
+<tr><td>
+
+```html
+<![CDATA[SomeTextOrSomething]]>
+```
+</td><td>
+
+```java
+MarkupDeclaration{
+	items=[
+		DeclarationSubset{items=[
+			"CDATA",
+			DeclarationSubset{items=[
+				"SomeTextOrSomething"
+			]}
+		]}
 	]
 }
 ```
