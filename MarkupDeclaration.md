@@ -9,7 +9,7 @@
 | `DOCTYPE` | Document Type | `<!DOCTYPE html>` |
 | `ELEMENT` | Element |
 | `ATTLIST` | Attribute List |
-| `NOTATION` | Notation |
+| `NOTATION` | Notation | `<!NOTATION tex PUBLIC "-//local//NOTATION TeX Formula//EN">`
 | `SHORTREF` | Short Reference |
 | `USEMAP` | Use Map |
 | `LINKTYPE` | Link Type |
